@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="about-section">
+  <h1 style="text-align:center;"> We Are DAPP Charity Platform</h1>
+  <p style="text-align:center;">Donors can use our platform to Donate to an Organization with much more trust and security.</p>
+  <p style="text-align:center;">To ensure Decentralisation, we have made a Smart Contract using Solidity then we have tested our</p> 
+  <p style="text-align:center;"> Smart Contract using truffle and Finally we have made the Frontend to interact with our Smart Contract.</p>
+</div>
+
+<h1 style="text-align:center">Meet Our Team</h1>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <h2>Amritpal  Singh (2018379)</h2>
+        <p class="title">Computer Science and Bioscience Student At IIITD</p>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to= amritpal18379@iiitd.ac.in" target="_blank">amritpal18379@iiitd.ac.in</a>
+        <p>          
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <h2>Deepanshu Kaushal (2018388)</h2>
+        <p class="title">Computer Science and Bioscience Student At IIITD</p>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to= deepanshu18388@iiitd.ac.in" target="_blank">deepanshu18388@iiitd.ac.in</a>
+        <p>          
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <h2>Aanchal Bakshi</h2>
+        <p class="title">Computer Science and Bioscience Student At IIITD</p>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to= aanchal18377@iiitd.ac.in" target="_blank">aanchal18377@iiitd.ac.in</a>
+        <p>          
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

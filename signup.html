@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post">
+            <div class="txt_field">
+                <input id="usn" type="text" required>
+                <label>Username</label>
+            </div>
+            <div  class="txt_field">
+                <input  id="ps" type="password" required>
+                <label>Password</label>
+            </div>
+            <div class="pass">
+                Forgot Password?
+            </div>
+            <a id="submit"> LOGIN
+                <!-- <input type="submit" value="Login"> -->
+            </a>
+            
+            <div class="Signup_link" id="login">Not a Member?
+                <a href="register.html">SignUp</a>
+            </div>
+        </form>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCjq4o_XhlnNs6-j3Qb12u1LYpWmeNjaMs",
+          authDomain: "fir-javascript-1ebf8.firebaseapp.com",
+          databaseURL: "https://fir-javascript-1ebf8-default-rtdb.firebaseio.com",
+          projectId: "fir-javascript-1ebf8",
+          storageBucket: "fir-javascript-1ebf8.appspot.com",
+          messagingSenderId: "849718749407",
+          appId: "1:849718749407:web:84fd380fa75355846a216a",
+          measurementId: "G-XL7C2TGB43"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        import {getDatabase, get, ref, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
+        const db= getDatabase();
+        
+        var userv=document.getElementById('usn');
+        console.log(userv)
+        var passv=document.getElementById('ps');
+        console.log(passv)
+        var funin=document.getElementById('submit');
+        function checkdata(){
+            const dbref=ref(db);
+            get(child(dbref,"thesd"+userv.value+ps.value)).then((snapshot)=>{
+                if(snapshot.exists()){
+                    window.location.href="dashborad1.html";
+                }
+                else{
+                    alert("No data found");
+                }
+            }).catch((error)=>{
+                alert("Unsuccer"+error);
+            });
+        }
+
+        funin.addEventListener("click",checkdata);
+        
+        //funin.addEventListener('click',insertdata);
+      </script>
+</body>
+</html>

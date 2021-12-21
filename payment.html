@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <!-- <link rel="stylesheet" href="payment.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        body{
+    margin: 0;
+    padding: 0;
+    background-color: hsl(236, 15%, 80%);
+    font-family: 'Montserrat', sans-serif;
+}
+form{
+    width: 600px;
+    margin: 100px auto 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 #30475e, 0 4px 8px 0 #30475e;
+    color: #ffffff;
+}
+h1{
+    text-align: center;
+}
+.box1{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+    margin: 10px 0 15px 0;
+    background-color: #30475e;
+}
+.div1{
+    display: inline-block;
+}
+.box2{
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    margin: 10px 0 15px 0;
+    background-color: #30475e;
+}
+#con{
+    width: 99%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: #30475e;
+    font-size: 18px;
+    color: #ffffff;
+}
+#acc{
+    width: 99%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: #30475e;
+    font-size: 18px;
+    color: #ffffff;
+} #bal{width: 99%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: #30475e;
+    font-size: 18px;
+    color: #ffffff;}
+    </style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<div>
+     
+        <h1>Payment</h1>
+		<br><br>
+		<label for="Pemail">Please Connect First to your MetaMask Account</label><br>
+        <button  id="con">Connect</button>
+		<br><br>
+        <!-- <label for="name">Your Name</label><br>
+        <input class="box1" type="text" type = "text" id="id" placeholder="Enter ID"> -->
+        <!-- <label for="Pemail">NGO Name</label><br>
+        <input class="box1" type="text"  type = "text" id="name" placeholder="Enter NGO name"> -->
+        <label for="Pemail">NGO Account Address : Receiver</label><br>
+        <input class="box1" type="text"  id="ngo_ID" placeholder="Enter Account Address of NGO"><br>
+        <button id="acc" type="submit">Confirm</button>
+		<br><br>
+		<button id='bal'>Balance</button>
+         
+   
+    
+    
+</div>
+<body>
+    
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js" crossorigin="anonymous"></script"></script>
+    <script>
+    web3= new Web3(web3.currentProvider);
+    var account;
+    var contract;
+    var abi=[
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "NGOs",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "ngo_name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ngo_ID",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address payable",
+				"name": "ngo_address",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getuserbal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "address payable",
+				"name": "_donor",
+				"type": "address"
+			}
+		],
+		"name": "new_donor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_a",
+				"type": "string"
+			},
+			{
+				"internalType": "address payable",
+				"name": "_ngo",
+				"type": "address"
+			}
+		],
+		"name": "new_ngo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+    async function connect(){
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        account = accounts[0];
+        contract = new web3.eth.Contract(abi,account);
+    }
+	$('#bal').click( async function(){
+    const amt=await web3.eth.getBalance(account);
+    alert('Your Current Account Balance(wei) is  : '+amt);
+        // const bal =await contract.methods.getuserbal().call({gasLimit:25000})
+        // console.log(bal)
+     })
+    function add_ngo(){
+        var sno=parseInt($('#id').val());
+        contract.methods.new_ngo($('#name').val(),sno,$('#ngo_ID').val()).send({from:account});
+    }
+    async function eth_transaction(){
+    const txHash = await ethereum.request({
+    method: 'eth_sendTransaction',
+    params: [{from: account,
+        to: $('#ngo_ID').val(),
+        value: web3.utils.toWei('0.001','ether'),
+    },
+    ],
+});
+}acc.addEventListener("click", eth_transaction);
+con.addEventListener("click", connect);
+    </script>
+</body>
+</html>

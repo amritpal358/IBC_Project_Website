@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIn</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    
+    <div class="center">
+        <h1>Signup</h1>
+        <p id='balance'></p>
+        <form method="post">
+            <div class="txt_field">
+                <input id="fullname" type="text" required >
+                <label>Full Name</label>
+            </div>
+            <div class="txt_field">
+                <input  id="username" type="text" required>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input id ="contactnumber" type="text" required>
+                <label>Contact Number</label>
+            </div>
+            <div class="txt_field">
+                <input id="pass" type="password" required>
+                <label>Password</label>
+            </div>
+            <div class="txt_field">
+                <input id="repass" type="password" required>
+                <label>Re-Password</label>
+            </div>
+            
+            <!-- <div class="txt_field">
+                <button id='dd' type="submit">INSERT</button>
+            </div> -->
+            <!-- <a id="beat" href="signup.html">SUBMIT</a> -->
+            <br>
+            <a id="beat" href="#">SUBMIT</a>
+            <br><br>
+            <!-- <input id="beat"type="submit" value="Submit" > -->
+            <div class="Signup_link" id="signup">Already a Member Directly?
+
+                <a href="signup.html">SignUp</a>
+            </div>
+            <div class="Signup_link" id="ngosin">
+
+                <a href="ngoregister.html">NGOregister</a>
+            </div>
+        </form>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCjq4o_XhlnNs6-j3Qb12u1LYpWmeNjaMs",
+          authDomain: "fir-javascript-1ebf8.firebaseapp.com",
+          databaseURL: "https://fir-javascript-1ebf8-default-rtdb.firebaseio.com",
+          projectId: "fir-javascript-1ebf8",
+          storageBucket: "fir-javascript-1ebf8.appspot.com",
+          messagingSenderId: "849718749407",
+          appId: "1:849718749407:web:84fd380fa75355846a216a",
+          measurementId: "G-XL7C2TGB43"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        import {getDatabase, ref, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
+        const db= getDatabase();
+        var namev=document.getElementById('fullname');
+        console.log(namev)
+        var userv=document.getElementById('username');
+        console.log(userv)
+        var passv=document.getElementById('pass');
+        console.log(passv)
+        var repassv=document.getElementById('repass');
+        console.log(repassv)
+        var contv=document.getElementById('contactnumber');
+        console.log(contv)
+        var funin=document.getElementById('beat');
+        function insertdata(){
+            set(ref(db,"thesd"+namev.value+passv.value),{
+                nam:namev.value,
+                user:userv.value,
+                pass:passv.value,
+                repass:repassv.value,
+                cont:contv.value
+            }).then(()=>{
+                alert("data stored succ");
+                window.location.href="signup.html";
+            })
+            .catch((error)=>{
+                alert("uncess,err");
+            });
+        }
+        funin.addEventListener("click",insertdata);
+        
+        //funin.addEventListener('click',insertdata);
+      </script>
+</body>
+</html>
